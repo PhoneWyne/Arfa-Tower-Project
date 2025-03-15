@@ -1,0 +1,16 @@
+{
+  "name": "arfa-tower-project",
+  "version": "1.0.0",
+  "description": "This repo contains the capstone project done for Arfa Karim Web Development course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.14",
+    "tailwindcss": "^4.0.14"
+  }
+}
