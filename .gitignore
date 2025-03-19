@@ -1,0 +1,15 @@
+# Node modules (if you install any packages later)
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Tailwind output file
+output.css
+styles.css  # (if you renamed it)
+
+# VS Code settings
+.vscode/
+
+# MacOS / Windows system files
+.DS_Store
+Thumbs.db
