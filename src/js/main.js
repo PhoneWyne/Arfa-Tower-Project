@@ -1,61 +1,20 @@
-import { loadComponent } from "./loadComponent.js";
-import { getCartCount, addToCart } from "./cartStorage.js";
+import { loadLayout } from "./layout.js";
+import { setupCartEvents, updateCartPill } from "./cartEvents.js";
 import { renderCart } from "./cart.js";
-import { renderProductCard } from "./renderProductCard.js";
-
-const products = [
-    {
-      id: 1,
-      name: "Ajax Home Kit",
-      price: 79.99,
-      image: "./src/images/product/jersey1.png"
-    },
-    {
-      id: 2,
-      name: "Albania Away Kit",
-      price: 79.99,
-      image: "./src/images/product/jersey2.jpeg"
-    }
-];
-
-document.addEventListener("DOMContentLoaded", async () => {
-    const container = document.querySelector(".product-grid");
-    for (const product of products) {
-      const card = await renderProductCard(product);
-      container.appendChild(card);
-    }
-});
-
-// Load navbar and footer on all pages
-document.addEventListener("DOMContentLoaded", function () {
-    loadComponent("./src/components/navbar.html", "navbar");
-    loadComponent("./src/components/footer.html", "footer");
-    renderCart();  // Load cart items
-});
-
+import { renderProducts } from "./product.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadComponent("./src/components/navbar.html", "navbar").then(() => {
-        updateCartPill(); // after navbar loads
-    });
-    loadComponent("./src/components/footer.html", "footer");
+  loadLayout().then(updateCartPill); // Navbar/footer, then update pill
 
-    document.body.addEventListener("click", (e) => {
-        if (e.target.classList.contains("add-to-cart")) {
-            const btn = e.target;
-            const item = {
-                id: parseInt(btn.dataset.id),
-                name: btn.dataset.name,
-                price: parseFloat(btn.dataset.price),
-                image: btn.dataset.image
-            };
-            addToCart(item);
-            updateCartPill();
-        }
-    });
+  // Home or Store page
+  if (document.querySelector(".product-grid")) {
+    renderProducts(".product-grid");
+  }
+
+  // Cart page
+  if (document.getElementById("cart-items")) {
+    renderCart();
+  }
+
+  setupCartEvents(); // Listen for "Add to Cart"
 });
-
-export function updateCartPill() {
-    const pill = document.getElementById("cart-pill");
-    if (pill) pill.textContent = getCartCount();
-}
