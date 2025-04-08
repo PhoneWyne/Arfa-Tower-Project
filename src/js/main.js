@@ -1,9 +1,20 @@
-import { loadComponent } from "./loadComponent.js";
-
+import { loadLayout } from "./layout.js";
+import { setupCartEvents, updateCartPill } from "./cartEvents.js";
 import { renderCart } from "./cart.js";
-// Load navbar and footer on all pages
-document.addEventListener("DOMContentLoaded", function () {
-    loadComponent("./src/components/navbar.html", "navbar");
-    loadComponent("./src/components/footer.html", "footer");
-    renderCart();  // Load cart items
+import { renderProducts } from "./product.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadLayout().then(updateCartPill); // Navbar/footer, then update pill
+
+  // Home or Store page
+  if (document.querySelector(".product-grid")) {
+    renderProducts(".product-grid");
+  }
+
+  // Cart page
+  if (document.getElementById("cart-items")) {
+    renderCart();
+  }
+
+  setupCartEvents(); // Listen for "Add to Cart"
 });
