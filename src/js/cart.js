@@ -1,9 +1,7 @@
-const cart = [
-    { id: 1, name: "Ajax Home Kit", price: 79.99, image: "../src/images/product/jersey1.png", quantity: 1 },
-    { id: 2, name: "Albania Away Kit", price: 79.99, image: "../src/images/product/jersey2.jpeg", quantity: 1 },
-];
+import { getCart, saveCart } from "./cartStorage.js";
 
 export function renderCart() {
+    const cart = getCart();
     const cartContainer = document.getElementById("cart-items");
     const subtotalElement = document.getElementById("cart-subtotal");
 
@@ -34,32 +32,31 @@ export function renderCart() {
 
     subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
 
-    attachEventListeners();
+    attachEventListeners(cart);
 }
 
-// Update cart item quantity
-function updateQuantity(index, change) {
+function updateQuantity(index, change, cart) {
     cart[index].quantity = Math.max(1, cart[index].quantity + change);
+    saveCart(cart);
     renderCart();
 }
 
-// Remove item from cart
-function removeItem(index) {
+function removeItem(index, cart) {
     cart.splice(index, 1);
+    saveCart(cart);
     renderCart();
 }
 
-// Attach event listeners to dynamically created buttons
-function attachEventListeners() {
+function attachEventListeners(cart) {
     document.querySelectorAll(".quantity-increase").forEach(btn => {
-        btn.addEventListener("click", (e) => updateQuantity(e.target.dataset.index, 1));
+        btn.addEventListener("click", (e) => updateQuantity(e.target.dataset.index, 1, cart));
     });
 
     document.querySelectorAll(".quantity-decrease").forEach(btn => {
-        btn.addEventListener("click", (e) => updateQuantity(e.target.dataset.index, -1));
+        btn.addEventListener("click", (e) => updateQuantity(e.target.dataset.index, -1, cart));
     });
 
     document.querySelectorAll(".remove-item").forEach(btn => {
-        btn.addEventListener("click", (e) => removeItem(e.target.dataset.index));
+        btn.addEventListener("click", (e) => removeItem(e.target.dataset.index, cart));
     });
 }

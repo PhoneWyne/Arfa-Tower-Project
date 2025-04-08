@@ -6,7 +6,7 @@
     <title>Jersey Store</title>
     <link href="./src/output.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100  min-h-screen">
 
     <!-- Navbar -->
     <div id="navbar"></div>
@@ -28,7 +28,15 @@
             <img src="./src/images/product/jersey1.png" alt="Ajax Home Kit" class="w-full h-auto rounded-lg"/>
             <h3 class="text-lg font-bold mt-2">Team Jersey 1</h3>
             <p class="text-gray-700">$79.99</p>
+            <button 
+              class="mt-2 px-4 py-1 bg-blue-600 text-white rounded add-to-cart"
+              data-id="1"
+              data-name="Ajax Home Kit"
+              data-price="79.99"
+              data-image="./src/images/product/jersey1.png"
+            >Add to Cart</button>
           </div>
+          
           <div class="bg-white shadow-md p-4 w-64">
             <img src="./src/images/product/jersey2.jpeg" alt="Albania Away Kit" class="w-full h-auto rounded-lg"/>
             <h3 class="text-lg font-bold mt-2">Team Jersey 2</h3>
