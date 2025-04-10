@@ -1,4 +1,4 @@
-import { getCart, saveCart } from "./cartStorage.js";
+import { getCart, saveCart } from "../utils/cartStorage.js";
 
 export function renderCart() {
     const cart = getCart();

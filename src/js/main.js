@@ -1,17 +1,18 @@
 import { loadLayout } from "./layout.js";
 import { setupCartEvents, updateCartPill } from "./cartEvents.js";
-import { renderCart } from "./cart.js";
-import { renderProducts } from "./product.js";
+import { renderCart } from "./pages/cart.js";
+import { renderProducts } from "./pages/product.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadLayout().then(updateCartPill); // Navbar/footer, then update pill
+  // ensure navbar+footer is loaded, then update cart pill 
+  loadLayout().then(updateCartPill); 
 
-  // Home or Store page
+  // render store page, if there's `product-grid`
   if (document.querySelector(".product-grid")) {
     renderProducts(".product-grid");
   }
 
-  // Cart page
+  // render cart if there is `cart-items`
   if (document.getElementById("cart-items")) {
     renderCart();
   }

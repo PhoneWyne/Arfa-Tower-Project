@@ -1,4 +1,4 @@
-import { loadComponent } from "./loadComponent.js";
+import { loadComponent } from "./utils/loadComponent.js";
 
 export function loadLayout() {
   return Promise.all([

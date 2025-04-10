@@ -1,4 +1,4 @@
-import { renderProductCard } from "./renderProductCard.js";
+import { renderProductCard } from "../components/renderProductCard.js";
 
 const products = [
   {
