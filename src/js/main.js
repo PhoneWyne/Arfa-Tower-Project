@@ -16,6 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("cart-items")) {
     renderCart();
   }
-
-  setupCartEvents(); // Listen for "Add to Cart"
+  // Listen for "Add to Cart"
+  setupCartEvents(); 
 });
