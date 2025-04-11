@@ -31,7 +31,7 @@ router.post('/login', (req, res) => {
             message: 'Login successful',
             user: {
                 id: user.id,
-                name: user.name,
+                name: user.username,
                 email: user.email,
             },
         });

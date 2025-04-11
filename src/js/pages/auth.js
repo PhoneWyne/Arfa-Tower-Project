@@ -16,6 +16,7 @@ export async function handleLogin(event) {
   const data = await res.json();
 
   if (res.ok) {
+    console.log("Login response data : ", data)
     localStorage.setItem("user", JSON.stringify(data.user));
     window.location.href = "index.html"; // redirect after login
   } else {
