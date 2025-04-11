@@ -1,13 +1,18 @@
-<div class="bg-white shadow-md p-4 w-64 product-card">
+<div class="bg-white shadow-md p-4 w-64 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
     <img src="{{image}}" alt="{{name}}" class="w-full h-auto rounded-lg"/>
-    <h3 class="text-lg font-bold mt-2">{{name}}</h3>
-    <p class="text-gray-700">${{price}}</p>
-    <button 
-      class="mt-2 px-4 py-1 bg-blue-600 text-white rounded add-to-cart"
-      data-id="{{id}}"
-      data-name="{{name}}"
-      data-price="{{price}}"
-      data-image="{{image}}"
-    >Add to Cart</button>
+    <h3 class="text-lg font-bold text-center mt-2">{{name}}</h3>
+
+    <div class="flex justify-between items-center">
+      <p class="text-gray-700">${{price}}</p>
+      <button 
+        class="mt-2 px-4 py-1 bg-blue-600 text-white rounded add-to-cart hover:bg-blue-700"
+        data-id="{{id}}"
+        data-name="{{name}}"
+        data-price="{{price}}"
+        data-image="{{image}}"
+      >
+        Add to Cart
+      </button>
+    </div>
 </div>
   
