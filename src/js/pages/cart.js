@@ -1,4 +1,5 @@
 import { getCart, saveCart } from "../utils/cartStorage.js";
+import {API} from '../../../endpoints.js';
 
 export function renderCart() {
     const cart = getCart();
@@ -59,4 +60,44 @@ function attachEventListeners(cart) {
     document.querySelectorAll(".remove-item").forEach(btn => {
         btn.addEventListener("click", (e) => removeItem(e.target.dataset.index, cart));
     });
+
+    document.getElementById("checkout-btn").addEventListener("click", async () => {
+        const cart = getCart();
+        const user = JSON.parse(localStorage.getItem("user"));
+        
+        if (!user || !user.id) {
+            alert("Please login to proceed with checkout.");
+            return;
+        }
+    
+        const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+        const order = {
+            user_id: user.id,
+            items: cart,
+            total: total.toFixed(2),
+        };
+        console.log("order payload for cart : ", order);
+        try {
+            const res = await fetch(API.CART, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(order)
+            });
+    
+            if (res.ok) {
+                alert("Order placed successfully!");
+                saveCart([]); // Clear cart
+                renderCart();
+            } else {
+                alert("Failed to place order.");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("An error occurred.");
+        }
+    });
+    
 }

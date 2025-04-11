@@ -2,10 +2,13 @@ import { loadLayout } from "./layout.js";
 import { setupCartEvents, updateCartPill } from "./cartEvents.js";
 import { renderCart } from "./pages/cart.js";
 import { renderProducts } from "./pages/product.js";
-
+import { handleLogin, handleSignup} from "./pages/auth.js";
 document.addEventListener("DOMContentLoaded", () => {
   // ensure navbar+footer is loaded, then update cart pill 
-  loadLayout().then(updateCartPill); 
+  loadLayout().then(() => {
+    updateCartPill();
+    attachAuthHandlers();
+  }); 
 
   // render store page, if there's `product-grid`
   if (document.querySelector(".product-grid")) {
@@ -19,3 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Listen for "Add to Cart"
   setupCartEvents(); 
 });
+
+function attachAuthHandlers() {
+  const loginForm = document.getElementById("login-form");
+  const signupForm = document.getElementById("signup-form");
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", handleLogin);
+  }
+
+  if (signupForm) {
+    signupForm.addEventListener("submit", handleSignup);
+  }
+}

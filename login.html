@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jersey Store</title>
+    <link href="./src/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100  min-h-screen">
+
+    <!-- Navbar -->
+    <div id="navbar"></div>
+    
+  
+    <div class="flex-grow">
+        <div class="flex items-center justify-center h-screen bg-gray-100">
+          <form id="login-form" class="bg-white p-6 rounded shadow-md max-w-md mx-auto mt-12">
+            <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+            <input id="login-email" type="email" required placeholder="Email" class="w-full mb-4 px-4 py-2 border rounded" />
+            <input id="login-password" type="password" required placeholder="Password" class="w-full mb-4 px-4 py-2 border rounded" />
+            <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Login</button>
+            <p class="text-center mt-4 text-sm">Don't have an account? <a href="signup.html" class="text-blue-600 hover:underline">Sign up</a></p>
+          </form>          
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    
+    <!-- JavaScript -->
+    <script src="./src/js/main.js" type="module" defer></script>
+  </body>
+  
+</html>

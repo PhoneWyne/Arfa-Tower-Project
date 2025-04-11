@@ -1,4 +1,5 @@
 export async function renderProductCard(product) {
+    // fetch card html component
     const res = await fetch("./src/components/productCard.html");
     let html = await res.text();
   
