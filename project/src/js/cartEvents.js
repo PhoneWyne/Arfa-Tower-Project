@@ -22,5 +22,13 @@ export function setupCartEvents() {
 
 export function updateCartPill() {
   const pill = document.getElementById("cart-pill");
-  if (pill) pill.textContent = getCartCount();
+  // if (pill) pill.textContent = getCartCount();
+  if(!pill) return;
+  const totalItems = getCartCount();
+  if(totalItems > 0) {
+    pill.textContent = totalItems;
+    pill.classList.remove('hidden');
+  } else {
+    pill.classList.add("hidden");
+  }
 }
