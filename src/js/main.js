@@ -15,8 +15,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // render store page, if there's `product-grid`
   if (document.querySelector(".product-grid")) {
-    renderProducts(".product-grid");
+    const searchInput = document.getElementById("searchInput");
+    const priceFilter = document.getElementById("priceFilter");
+  
+    function updateProductDisplay() {
+      const searchTerm = searchInput?.value || "";
+      const sortValue = priceFilter?.value || "";
+      renderProducts(".product-grid", searchTerm, sortValue);
+    }
+  
+    // Initial render
+    updateProductDisplay();
+  
+    // Event listeners
+    searchInput?.addEventListener("input", updateProductDisplay);
+    priceFilter?.addEventListener("change", updateProductDisplay);
   }
+  
 
   // render cart if there is `cart-items`
   if (document.getElementById("cart-items")) {
@@ -74,7 +89,7 @@ function updateNavbarAuth() {
 
 function renderAccountPage() {
   const user = JSON.parse(localStorage.getItem("user"));
-  const container = document.querySelector(".flex-grow");
+  const container = document.querySelector(".account");
 
   if (!user) {
     container.innerHTML = `<p class="text-center mt-8 text-red-500">You must be logged in to view your account.</p>`;
